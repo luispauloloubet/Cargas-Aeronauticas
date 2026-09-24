@@ -1,0 +1,48 @@
+Asa Aureon - Versao com Torcao Geometrica (25 Estacoes)
+# Mach
+0.0
+# IYsym   IZsym   Zsym
+  0       0       0.0
+# Sref    Cref    Bref
+  35.045  1.850   18.944
+# Xref    Yref    Zref
+  1.140   0.000   0.000
+
+#==============================================================
+SURFACE
+Main Wing
+# Nchord    Cspace    Nspan    Sspace
+  12        1.0       50       -2.0
+
+YDUPLICATE
+0.0
+
+ANGLE
+0.0
+
+#--------------------------------------------------------------
+# SECAO 1: RAIZ (y = 0.000 m)
+SECTION
+# Xle     Yle     Zle     Chord   Ainc    Nspan   Sspace
+  0.000   0.000   0.000   2.884   0.00    12      -2.0
+
+AFILE
+0213hsnlf.dat
+
+#--------------------------------------------------------------
+# SECAO 2: ESTACAO INTERMEDIARIA (y = 4.736 m)
+SECTION
+# Xle     Yle     Zle     Chord   Ainc    Nspan   Sspace
+  1.400   4.736   0.632   1.850  -1.00    13      -2.0
+
+AFILE
+0213hsnlf.dat
+
+#--------------------------------------------------------------
+# SECAO 3: PONTA (y = 9.472 m)
+SECTION
+# Xle     Yle     Zle     Chord   Ainc    Nspan   Sspace
+  2.800   9.472   1.264   0.816  -3.00    0       0.0
+
+AFILE
+0213hsnlf.dat

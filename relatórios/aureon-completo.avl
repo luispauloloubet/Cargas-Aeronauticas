@@ -1,0 +1,122 @@
+Aeronave Executiva - Modelo Completo (Asa + EV + EH em T)
+# Mach
+0.0
+# IYsym   IZsym   Zsym
+  0       0       0.0
+# Sref    Cref    Bref
+  35.045  1.850   18.944
+# Xref    Yref    Zref (Posicao de referencia do CG estimada)
+  2.100   0.000   0.150
+
+#==============================================================
+# 1. ASA PRINCIPAL (Com diedro de 7.6 deg e torcao geometrica)
+#==============================================================
+SURFACE
+Main Wing
+# Nchord    Cspace    Nspan    Sspace
+  12        1.0       25       -2.0
+
+YDUPLICATE
+0.0
+
+ANGLE
+0.0
+
+#--------------------------------------------------------------
+# SECAO 1: RAIZ (y = 0.000 m)
+SECTION
+# Xle     Yle     Zle     Chord   Ainc    Nspan   Sspace
+  0.000   0.000   0.000   2.884   0.00    12      -2.0
+AFILE
+0213hsnlf.dat
+
+#--------------------------------------------------------------
+# SECAO 2: KINK / INTERMEDIARIA (y = 4.736 m)
+SECTION
+# Xle     Yle     Zle     Chord   Ainc    Nspan   Sspace
+  1.400   4.736   0.632   1.850  -1.00    13      -2.0
+AFILE
+0213hsnlf.dat
+
+#--------------------------------------------------------------
+# SECAO 3: PONTA (y = 9.472 m)
+SECTION
+# Xle     Yle     Zle     Chord   Ainc    Nspan   Sspace
+  2.800   9.472   1.264   0.816  -3.00    0       0.0
+AFILE
+0213hsnlf.dat
+
+
+#==============================================================
+# 2. EMPENAGEM VERTICAL (EV) - Mastilho / Fin
+#==============================================================
+SURFACE
+Vertical Tail
+# Nchord    Cspace    Nspan    Sspace
+  10        1.0       16       -2.0
+
+ANGLE
+0.0
+
+#--------------------------------------------------------------
+# RAIZ DO EV (Juncao com o cone de cauda da fuselagem)
+SECTION
+# Xle     Yle     Zle     Chord   Ainc    Nspan   Sspace
+  9.800   0.000   0.500   2.600   0.00    16      -2.0
+NACA
+0012
+
+CONTROL
+# name    gain    Xhinge   HingeVec          SignSym
+  rudder  1.0     0.70     0.0  0.0  1.0     1.0
+
+#--------------------------------------------------------------
+# PONTA DO EV (Topo da cauda / Encontro com a raiz do EH)
+SECTION
+# Xle     Yle     Zle     Chord   Ainc    Nspan   Sspace
+  12.000  0.000   2.900   1.450   0.00    0       0.0
+NACA
+0012
+
+CONTROL
+# name    gain    Xhinge   HingeVec          SignSym
+  rudder  1.0     0.70     0.0  0.0  1.0     1.0
+
+
+#==============================================================
+# 3. EMPENAGEM HORIZONTAL (EH) - Montada no topo do EV (Cauda em T)
+#==============================================================
+SURFACE
+Horizontal Tail
+# Nchord    Cspace    Nspan    Sspace
+  10        1.0       16       -2.0
+
+YDUPLICATE
+0.0
+
+ANGLE
+0.0
+
+#--------------------------------------------------------------
+# RAIZ DO EH (Zle fixado em 2.900 m, topo do EV)
+SECTION
+# Xle     Yle     Zle     Chord   Ainc    Nspan   Sspace
+  11.750  0.000   2.900   1.550   0.00    16      -2.0
+NACA
+0012
+
+CONTROL
+# name      gain    Xhinge   HingeVec          SignSym
+  elevator  1.0     0.70     0.0  1.0  0.0     1.0
+
+#--------------------------------------------------------------
+# PONTA DO EH (Semi-envergadura de 2.6 m com enflechamento)
+SECTION
+# Xle     Yle     Zle     Chord   Ainc    Nspan   Sspace
+  12.850  2.600   2.900   0.850   0.00    0       0.0
+NACA
+0012
+
+CONTROL
+# name      gain    Xhinge   HingeVec          SignSym
+  elevator  1.0     0.70     0.0  1.0  0.0     1.0
