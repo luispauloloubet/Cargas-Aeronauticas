@@ -1,4 +1,4 @@
-# Cargas-Aeronauticas
+# Cargas-Aeronáuticas
 
 # Análise Estrutural e Determinação de Carregamentos Aerodinâmicos para Aeronave com Cauda em T (FAR 23 / AVL)
 
