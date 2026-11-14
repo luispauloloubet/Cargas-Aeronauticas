@@ -58,84 +58,36 @@ O projeto segue rigorosamente os critérios de aeronavegabilidade prescritos na 
 
 ---
 
-## 📁 Estrutura Detalhada de Diretórios e Arquivos
+## 📂 Estrutura do Repositório
 
 ```text
 Cargas/
-│
-├── dados/                                    # Dados de entrada, tabelas e parâmetros de projeto
-│   ├── CLs para analise.csv                  # Tabela com coeficientes de sustentação para trimagem
-│   ├── parametros.yaml                       # Propriedades de massa, geometria de referência e voo
-│   ├── pontos_criticos_diagramaVN.csv        # Tabela dos vértices do envelope (V, n, q_inf)
-│   │
-│   └── carregamentos/                        # Diretório de saídas brutas do AVL e tabelas processadas
-│       ├── matriz_casos_empenagem_FAR23.csv  # Definição dos casos laterais (Beta, Deflexões D1/D2)
-│       ├── distribuicao_caso_0.txt           # Saída de Strip Forces (FS) do AVL para Caso 0 (V-n)
-│       ├── distribuicao_caso_1.txt           # Saída de Strip Forces (FS) do AVL para Caso 1 (V-n)
-│       ├── distribuicao_caso_2.txt           # Saída de Strip Forces (FS) do AVL para Caso 2 (V-n)
-│       ├── distribuicao_caso_3.txt           # Saída de Strip Forces (FS) do AVL para Caso 3 (V-n)
-│       ├── distribuicao_caso_4.txt           # Saída de Strip Forces (FS) do AVL para Caso 4 (V-n)
-│       ├── distribuicao_caso_COMB_cauda_T.txt# Relatório bruto FS para caso acoplado de Cauda em T
-│       ├── distribuicao_caso_EH_2_manobra_pitch.txt # Relatório FS para manobra brusca de profundor
-│       ├── distribuicao_caso_EV_1_rudder_kick.txt   # Relatório FS para manobra de leme puro (Beta=0)
-│       ├── distribuicao_caso_EV_2_overshoot.txt     # Relatório FS para overshoot de derrapagem
-│       │
-│       ├── asa/                              # CSVs de carregamentos seccionais da Asa Principal
-│       │   ├── carregamento asa [envergadura] caso 0.csv
-│       │   ├── carregamento asa [envergadura] caso 1.csv
-│       │   ├── carregamento asa [envergadura] caso 2.csv
-│       │   ├── carregamento asa [envergadura] caso 3.csv
-│       │   └── carregamento asa [envergadura] caso 4.csv
-│       │
-│       ├── eh/                               # CSVs de carregamentos do Estabilizador Horizontal
-│       │   ├── carregamento EH [envergadura] caso 0.csv
-│       │   ├── carregamento EH [envergadura] caso 1.csv
-│       │   ├── carregamento EH [envergadura] caso 2.csv
-│       │   ├── carregamento EH [envergadura] caso 3.csv
-│       │   ├── carregamento EH [envergadura] caso 4.csv
-│       │   ├── carregamento EH [envergadura] caso COMB_cauda_T.csv
-│       │   ├── carregamento EH [envergadura] caso EH_2_manobra_pitch.csv
-│       │   ├── carregamento EH [envergadura] caso EV_1_rudder_kick.csv
-│       │   └── carregamento EH [envergadura] caso EV_2_overshoot.csv
-│       │
-│       └── ev/                               # CSVs de carregamentos do Estabilizador Vertical
-│           ├── carregamento EV [altura] caso 0.csv
-│           ├── carregamento EV [altura] caso 1.csv
-│           ├── carregamento EV [altura] caso 2.csv
-│           ├── carregamento EV [altura] caso 3.csv
-│           ├── carregamento EV [altura] caso 4.csv
-│           ├── carregamento EV [altura] caso COMB_cauda_T.csv
-│           ├── carregamento EV [altura] caso EH_2_manobra_pitch.csv
-│           ├── carregamento EV [altura] caso EV_1_rudder_kick.csv
-│           └── carregamento EV [altura] caso EV_2_overshoot.csv
-│
-├── imagens/                                  # Diretório de armazenamento de figuras e plots técnicos
-│   ├── vn/                                   # Gráficos de envoltórias operacionais da aeronave
-│   │   ├── 01.diagrama_vn_manobras.png      # Curva isolada do envelope de manobra
-│   │   ├── 02.diagramaVN_Rajadas.png        # Linhas de penetração de rajada vertical
-│   │   ├── 03.diagramaVN_Rajadas2.png       # Comparação entre limites de rajada e manobra
-│   │   └── 04.diagramaVN_final.png          # Envelope de voo combinado final com preenchimento
-│   │
-│   └── carregamentos/                        # Gráficos de distribuição seccional e envoltórias
-│       ├── asa/
-│       │   ├── distribuicao_asa_N_prime_caso_0.png # Distribuição de carga normal para o Caso 0
-│       │   └── envelope_asa_N_prime.png     # Envelope com todos os casos de carga sobrepostos
-│       ├── eh/
-│       │   └── envelope_eh_N_prime.png      # Envelope de cargas normais na empenagem horizontal
-│       └── ev/
-│           ├── distribuicao_ev_N_prime_caso_EV_2_overshoot.png # Força lateral no caso dinâmico
-│           └── envelope_ev_N_prime.png      # Envelope de esforço cortante lateral no mastro
-│
-├── notebooks/                                # Código-fonte, automações e pipelines de cálculo
-│   ├── 01.diagramaVN.ipynb                   # Construção matemática do diagrama V-n
-│   ├── 02.automacao_AERONAVE.py              # Script de automação AVL para casos simétricos
-│   ├── 03.automacao_EMPENAGENS_FAR23.py      # Script de automação AVL para manobras da cauda em T
-│   ├── 04.execucao.py                        # Script orquestrador de processamento e gráficos
-│   │
-│   └── src/                                  # Módulos Python reutilizáveis (biblioteca interna)
-│       ├── __init__.py                       # Arquivo de inicialização de pacote Python
-│       ├── config.py                         # Definição e auto-criação de diretórios via pathlib
-│       ├── carregamentos.py                  # Algoritmo de parsing de Strip Forces e cálculo de N', T', L'
-│       └── graficos.py                       # Funções padronizadas de plotagem com Matplotlib
-│
+├── .vscode/                               # Configurações do VS Code
+│   └── settings.json
+├── dados/                                 # Entradas numéricas e planilhas de cálculo
+│   ├── avl/                               # Distribuições aerodinâmicas e matrizes de trimagem (AVL)
+│   │   ├── distribuicao_caso_0.txt        # Casos de manobra simétrica/rajada
+│   │   ├── distribuicao_caso_1.txt
+│   │   ├── distribuicao_caso_2.txt
+│   │   ├── distribuicao_caso_3.txt
+│   │   ├── distribuicao_caso_4.txt
+│   │   ├── distribuicao_caso_va_as.txt    # Manobras assimétricas
+│   │   ├── distribuicao_caso_vc_as.txt
+│   │   ├── tabela_trimagem_casos.csv      # Condições de trimagem e ângulos de equilíbrio
+│   │   └── matriz_casos_empenagem_FAR23.csv
+│   ├── carregamentos/                     # Rotinas e planilhas de carregamento distribuído
+│   │   ├── casos_carga_fuselagem.py       # Script de integração e balanceamento da fuselagem
+│   │   └── *.xlsx                         # Planilhas de dados por estação
+│   ├── CLs para analise.csv               # Coeficientes de sustentação por caso
+│   ├── parametros.yaml                    # Parâmetros geométricos, pesos e inércias
+│   └── pontos_criticos_diagramaVN.csv     # Pontos operacionais e fatores de carga (n)
+└── imagens/                               # Saídas gráficas geradas pelas rotinas
+    ├── carregamentos/                     # Distribuições de sustentação e forças por unidade de comprimento
+    │   ├── asa/                           # Curvas spanwise e envelopes da asa
+    │   ├── eh/                            # Cargas e envoltórias da EH
+    │   ├── ev/                            # Cargas e envoltórias da EV
+    │   └── fuselagem/                     # Distribuições ao longo do comprimento da fuselagem
+    └── esforcos/                          # Diagramas de esforços solicitantes internos
+        ├── asa/                           # V, M e T ao longo da asa
+        └── eh/                            # V, M e T na empenagem horizontal
 └── relatórios/                               # Espaço reservado para documentação técnica e memoriais
