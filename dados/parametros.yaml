@@ -1,0 +1,23 @@
+# Parâmetros de Voo e Aerodinâmica
+velocidades:
+  V_c: 207.873600 # Velocidade de cruzeiro (m/s)
+  V_s: 54.743055 # Velocidade de estol (m/s)
+  V_d: 291.02304 # Velocidade de mergulho (1.4 * V_c)
+
+atmosfera:
+  rho: 1.225 # Densidade do ar (kg/m3)
+
+geometria_peso:
+  S: 35.011901 # Área da asa (m2)
+  W: 83778.5772 # MTOW (N)
+
+aerodinamica:
+  CLmax: 1.5284 # Coeficiente de sustentação máximo
+  CLmax_flap: 1.8093 # Coeficiente de sustentação com flaps
+  CLmin: -1.10 # Coeficiente de sustentação mínimo
+  beta: 5.782 # CL_alpha médio (rad^-1)
+
+fatores_carga:
+  nMax: 3.8 # FAR 23.337 (a)(1)
+  nMax_flap: 2.0 # FAR 25.345 (a)(1)
+  nMin: -1.52 # FAR 23.337 (b)(1)
