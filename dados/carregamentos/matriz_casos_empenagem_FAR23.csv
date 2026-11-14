@@ -1,5 +1,0 @@
-id,descricao,cl_alvo,beta,d1_leme,modo_d2
-EV_1_rudder_kick,"Rudder Kick em VD (Beta=0, D1=-25)",0.15,0.0,-25.0,PM 0.0
-EV_2_overshoot,"Dynamic Overshoot em VD (Beta=1.5*Beta_max, D1=-25)",0.15,15.0,-25.0,PM 0.0
-COMB_cauda_T,Carga Combinada Cauda em T em VD,0.2,15.0,-25.0,PM 0.0
-EH_2_manobra_pitch,Manobra Brusca de Profundor em VA,0.45,0.0,0.0,D2 -25.0
