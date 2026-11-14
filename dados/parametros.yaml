@@ -9,7 +9,7 @@ atmosfera:
 
 geometria_peso:
   S: 35.011901 # Área da asa (m2)
-  W: 83750.375868 # MTOW (N)
+  W: 83778.5772 # MTOW (N)
 
 aerodinamica:
   CLmax: 1.5284 # Coeficiente de sustentação máximo
